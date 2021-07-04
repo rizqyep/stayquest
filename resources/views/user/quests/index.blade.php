@@ -27,8 +27,8 @@
 
                                 <div class="col-md-4">
                                     <div class="d-flex justify-content-center">
-                                        <img src="/storage/{{ $quest->icon }}" alt="Quest Image" style="width:22vw;"
-                                            class="mr-0 mr-md-5 mb-3 ">
+                                        <img src="/storage/{{ $quest->icon }}" alt="Quest Image" style="width:20vw;"
+                                            class="mr-0 mr-md-3 mb-3 ">
                                     </div>
                                 </div>
 
