@@ -62,7 +62,7 @@
                 </li>
 
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Reviews">
-                    <a class="nav-link" href="reviews.html">
+                    <a class="nav-link" href="{{url('/admin/reviews')}}">
                         <i class="fa fa-fw fa-star"></i>
                         <span class="nav-link-text">Reviews</span>
                     </a>
