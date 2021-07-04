@@ -19,7 +19,7 @@ class IsAdmin
         if (Auth::user() && Auth::user()->role == 'ADMIN') {
             return $next($request);
         } else {
-            return redirect("/login");
+            return redirect("/");
         }
     }
 }
