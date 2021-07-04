@@ -20,10 +20,12 @@ class QuestController extends Controller
     public function index()
     {
         $today = date("Y-m-d");
+        $activeBookingsCount = Booking::where('end_date', '>', $today)->where('start_date', '<=', $today)->count();
+       
         $activeBookings = Booking::where('end_date', '>', $today)->where('start_date', '<=', $today)->first();
        
         $noActive = false;
-        if($activeBookings->count == 0){
+        if($activeBookingsCount == 0){
             $noActive = true;
             return view('user.quests.index',compact('noActive'));
         }
