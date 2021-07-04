@@ -14,7 +14,7 @@
                 <div class="wrapper">
                     <div class="container">
                         <h3>Book unique experiences</h3>
-                        <p>Expolore top rated tours, hotels and restaurants around the world</p>
+                        <p>Explore top rated staycation packages with maximum safety and experience!</p>
 
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                                     <p>{{ $package->description }}
                                     </p>
                                     <span class="price">From <strong>{{ $package->idrPrice() }}</strong> </span>
-                                    <p>Max Guests allowed per pac : {{ $package->accommodation->capacity }} person</p>
+                                    <p>Room Capacity : {{ $package->accommodation->capacity }} person</p>
                                 </div>
                                 <ul>
                                     <li><i class="icon_clock_alt"></i> {{ $package->duration }} days</li>

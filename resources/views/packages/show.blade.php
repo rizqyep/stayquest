@@ -9,12 +9,8 @@
 @section('content')
     </header>
     <!-- /header -->
-    <div class="hidden" id="city">
-        {{ $package->city }}
-    </div>
-    <div class="hidden" id="duration">
-        {{ $package->duration }}
-    </div>
+    <input type="hidden" name="city" id="city" value ="{{$package->city}}">
+    <input type="hidden" name="duration" value="{{$package->duration}}" id="duration">
     <main>
         <section class="hero_in hotels_detail" style="background:url('/storage/{{ $package->image }}')">
             <div class="wrapper">
@@ -122,8 +118,7 @@
 
                             <!-- /rom_type -->
                             <hr>
-                            <h3>Location</h3>
-                            <div id="map" class="map map_single add_bottom_30"></div>
+                          
                             <!-- End Map -->
                         </section>
                         <!-- /section -->
@@ -134,17 +129,17 @@
                                 <div class="row">
                                     <div class="col-lg-3">
                                         <div id="review_summary">
-                                            <strong>8.5</strong>
-                                            <em>Superb</em>
-                                            <small>Based on 4 reviews</small>
+                                            <strong>{{$package->rating()}}</strong>
+                                            
+                                            <small>Based on {{$package->reviews->count()}} reviews</small>
                                         </div>
                                     </div>
                                     <div class="col-lg-9">
                                         <div class="row">
                                             <div class="col-lg-10 col-9">
                                                 <div class="progress">
-                                                    <div class="progress-bar" role="progressbar" style="width: 90%"
-                                                        aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar" role="progressbar" style="width: {{$package->fiveStars()}}%"
+                                                        aria-valuenow="{{$package->fiveStars()}}" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-2 col-3"><small><strong>5 stars</strong></small></div>
@@ -153,8 +148,8 @@
                                         <div class="row">
                                             <div class="col-lg-10 col-9">
                                                 <div class="progress">
-                                                    <div class="progress-bar" role="progressbar" style="width: 95%"
-                                                        aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar" role="progressbar" style="width: {{$package->fourStars()}}%"
+                                                        aria-valuenow="{{$package->fiveStars()}}" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-2 col-3"><small><strong>4 stars</strong></small></div>
@@ -163,8 +158,8 @@
                                         <div class="row">
                                             <div class="col-lg-10 col-9">
                                                 <div class="progress">
-                                                    <div class="progress-bar" role="progressbar" style="width: 60%"
-                                                        aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar" role="progressbar" style="width: {{$package->threeStars()}}%"
+                                                        aria-valuenow="{{$package->threeStars()}}" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-2 col-3"><small><strong>3 stars</strong></small></div>
@@ -173,8 +168,8 @@
                                         <div class="row">
                                             <div class="col-lg-10 col-9">
                                                 <div class="progress">
-                                                    <div class="progress-bar" role="progressbar" style="width: 20%"
-                                                        aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar" role="progressbar" style="width: {{$package->twoStars()}}%"
+                                                        aria-valuenow="{{$package->twoStars()}}" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-2 col-3"><small><strong>2 stars</strong></small></div>
@@ -183,8 +178,8 @@
                                         <div class="row">
                                             <div class="col-lg-10 col-9">
                                                 <div class="progress">
-                                                    <div class="progress-bar" role="progressbar" style="width: 0"
-                                                        aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar" role="progressbar" style="width: {{$package->oneStars()}}%"
+                                                        aria-valuenow="{{$package->oneStars()}}" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-2 col-3"><small><strong>1 stars</strong></small></div>
@@ -198,71 +193,31 @@
                             <hr>
 
                             <div class="reviews-container">
-
+                                @foreach($package->reviews as $review)
                                 <div class="review-box clearfix">
-                                    <figure class="rev-thumb"><img src="/img/avatar1.jpg" alt="">
-                                    </figure>
+                                    
                                     <div class="rev-content">
                                         <div class="rating">
-                                            <i class="icon_star voted"></i><i class="icon_star voted"></i><i
-                                                class="icon_star voted"></i><i class="icon_star voted"></i><i
-                                                class="icon_star"></i>
+                                            @for($i = 0 ; $i < intval($review->rating) ;$i++)
+                                            <i class="icon_star voted"></i>
+                                            @endfor
+                                            
+                                            @for($i = 5 ; $i > intval($review->rating) ; $i++)
+                                                <i class="icon_star"></i>
+                                            @endfor
                                         </div>
                                         <div class="rev-info">
-                                            Admin – April 03, 2016:
+                                            {{$review->user->name}}
                                         </div>
                                         <div class="rev-text">
                                             <p>
-                                                Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar
-                                                hendrerit. Cum sociis natoque penatibus et magnis dis
+                                              {{$review->text}}
                                             </p>
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
                                 <!-- /review-box -->
-                                <div class="review-box clearfix">
-                                    <figure class="rev-thumb"><img src="/img/avatar2.jpg" alt="">
-                                    </figure>
-                                    <div class="rev-content">
-                                        <div class="rating">
-                                            <i class="icon-star voted"></i><i class="icon_star voted"></i><i
-                                                class="icon_star voted"></i><i class="icon_star voted"></i><i
-                                                class="icon_star"></i>
-                                        </div>
-                                        <div class="rev-info">
-                                            Ahsan – April 01, 2016:
-                                        </div>
-                                        <div class="rev-text">
-                                            <p>
-                                                Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar
-                                                hendrerit. Cum sociis natoque penatibus et magnis dis
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /review-box -->
-                                <div class="review-box clearfix">
-                                    <figure class="rev-thumb"><img src="/img/avatar3.jpg" alt="">
-                                    </figure>
-                                    <div class="rev-content">
-                                        <div class="rating">
-                                            <i class="icon-star voted"></i><i class="icon_star voted"></i><i
-                                                class="icon_star voted"></i><i class="icon_star voted"></i><i
-                                                class="icon_star"></i>
-                                        </div>
-                                        <div class="rev-info">
-                                            Sara – March 31, 2016:
-                                        </div>
-                                        <div class="rev-text">
-                                            <p>
-                                                Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar
-                                                hendrerit. Cum sociis natoque penatibus et magnis dis
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /review-box -->
-                            </div>
                             <!-- /review-container -->
                         </section>
                         <!-- /section -->
@@ -274,9 +229,15 @@
                                 <h4 class="text-center mt-5 text-muted">You need to be logged in to leave a review</h4>
                                 <a href="{{ route('login') }}" class="text-center">Login Here</a>
                             @else
-                                <form action="{{ url('/packages/review/' . $package->id) }}" method="POST">
+                                <form action="{{ url('/packages/review/') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
+                                    <input type="hidden" name="package_id" value="{{ $package->id }}">
                                     <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label for="image">Image (optional)</label>
+                                            <input type="file" name="image" id="image" class="form-control-file">
+                                        </div>
+                                        <hr>
                                         <div class="form-group col-md-6">
                                             <label>Rating </label>
                                             <div class="custom-select-form">
@@ -285,12 +246,8 @@
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
                                                     <option value="4">4</option>
-                                                    <option value="5" selected>5 (medium)</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10 (highest)</option>
+                                                    <option value="5" selected>5 (highest)</option>
+                                                   
                                                 </select>
                                             </div>
                                         </div>
@@ -377,7 +334,7 @@
 
 
         window.addEventListener('load', () => {
-            let city = document.getElementById('city').innerText;
+            let city = document.getElementById('city').value;
             loadJSON('/json/covid19.json', (data) => {
                 data.data.forEach((covidData) => {
                     if (covidData.kota.includes(city)) {
@@ -415,7 +372,7 @@
             startValue.setDate(parseInt(splittedStart[2]));
             startValue.setMonth(parseInt(splittedStart[1] - 1));
             console.log(startValue);
-            let duration = parseInt(document.getElementById('duration').innerText);
+            let duration = parseInt(document.getElementById('duration').value);
             let endValue = new Date(startValue);
             endValue.setDate(startValue.getDate() + duration + 1);
             let endDate = document.getElementById('end_date');

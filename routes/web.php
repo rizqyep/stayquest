@@ -32,3 +32,5 @@ Route::post('/checkout', 'CheckoutController@store');
 Route::get('/user/dashboard', 'HomeController@index');
 Route::resource('/user/bookings', 'BookingController');
 Route::resource('/user/quests', 'QuestController');
+
+Route::post('/packages/review/', 'ReviewController@store');
