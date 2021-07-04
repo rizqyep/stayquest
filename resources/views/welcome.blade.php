@@ -32,22 +32,25 @@
                             <div class="box_grid">
                                 <figure>
                                     <a href="#0" class="wish_bt"></a>
-                                    <a href="tour-detail.html"><img src="img/tour_1.jpg" class="img-fluid" alt=""
-                                            width="800" height="533">
+                                    <a href="{{ url('packages' . $package->id) }}"><img
+                                            src="/storage/{{ $package->image }}" class="img-fluid" alt="" width="800"
+                                            height="533">
                                         <div class="read_more"><span>Read more</span></div>
                                     </a>
 
                                 </figure>
                                 <div class="wrapper">
-                                    <h3><a href="tour-detail.html">{{ $package->name }}</a></h3>
+                                    <h3><a href="{{ url('packages/' . $package->id) }}">{{ $package->name }}</a></h3>
                                     <p>{{ $package->description }}
                                     </p>
-                                    <span class="price">From <strong>{{ $package->price }}</strong> /per person</span>
+                                    <span class="price">From <strong>{{ $package->idrPrice() }}</strong> </span>
+                                    <p>Max Guests allowed per pac : {{ $package->accommodation->capacity }} person</p>
                                 </div>
                                 <ul>
                                     <li><i class="icon_clock_alt"></i> 1h 30min</li>
                                     <li>
-                                        <div class="score"><span>Superb<em>350 Reviews</em></span><strong>8.9</strong></div>
+                                        <div class="score"><span><em>{{ $package->reviews->count() }}
+                                                    Reviews</em></span><strong>{{ $package->rating() }}</strong></div>
                                     </li>
                                 </ul>
                             </div>

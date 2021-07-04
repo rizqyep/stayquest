@@ -59,17 +59,26 @@ class PackagesController extends Controller
         return view('admin.packages.quests', compact('quests', 'package'));
     }
 
-    public function storeQuests(Request $request, $package_id)
+    public function storeQuest(Request $request, $package_id)
     {
         $icon = Storage::disk('public')->put('quest_icons', $request->icon);
         $quest = new Quest();
         $quest->name = $request->name;
         $quest->package_id = $package_id;
         $quest->icon = $icon;
-        $quest->points = $points;
+        $quest->points = $request->points;
+        $quest->description = $request->description;
+        $quest->location = $request->location;
         $quest->save();
         Alert::success('Succcess', 'Quest has been successfully added!');
 
+        return redirect('/admin/packages/quests/' . $package_id);
+    }
+
+    public function deleteQuest(Request $request, $package_id)
+    {
+        Quest::destroy($request->id);
+        Alert::success('Succcess', 'Quest has been successfully deleted!');
         return redirect('/admin/packages/quests/' . $package_id);
     }
 }

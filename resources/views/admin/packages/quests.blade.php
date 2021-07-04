@@ -29,8 +29,9 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ url('/admin/package/quests/' . $package->id) }}" method="post"
+                                <form action="{{ url('/admin/packages/quests/' . $package->id) }}" method="post"
                                     enctype="multipart/form-data">
+                                    @csrf
                                     <div class="form-group">
                                         <label for="icon">Icon</label>
                                         <input type="file" name="icon" id="icon" class="form-control">
@@ -39,6 +40,11 @@
                                         <label for="name">Quest's Title</label>
                                         <input class="form-control" type="text" name="name" id="name"
                                             placeholder="E.g. : Chill at The Cafe">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="location">Quest's Location</label>
+                                        <input class="form-control" type="text" name="location" id="location"
+                                            placeholder="E.g. : Resort's Cafe">
                                     </div>
                                     <div class="form-group">
                                         <label for="description">Quest's Description</label>
@@ -63,6 +69,30 @@
                 <!-- Modal Add Quest -->
             </div>
 
+
+            @foreach ($quests as $quest)
+                <hr class="mt-3 mb-3">
+                <div class="d-flex justify-content-start align-items-center">
+                    <div style="width:200px;" class="d-flex justify-content-center mr-5">
+                        <img src="/storage/{{ $quest->icon }}" alt="" height="120">
+                    </div>
+                    <div class="w-100">
+                        <div class="d-flex justify-content-between">
+                            <h4>{{ $quest->name }}</h4>
+                            <form action="{{ url('/admin/packages/quests/' . $package->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="id" value="{{ $quest->id }}">
+                                <button class=" btn btn-danger btn-sm"><i class="fa fa-fw fa-trash text-white"></i></button>
+                            </form>
+                        </div>
+                        <p>{{ $quest->descrition }}</p>
+                        <p><i class="fa fa-fw fa-money mr-2"></i>{{ $quest->points }} Points </p>
+                        <p><i class="fa fa-fw fa-map-pin mr-2"></i>{{ $quest->location }}</p>
+                    </div>
+                </div>
+            @endforeach
+            <hr class="mt-3 mb-3">
         </div>
     </div>
 @endsection
