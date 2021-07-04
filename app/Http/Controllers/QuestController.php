@@ -21,9 +21,16 @@ class QuestController extends Controller
     {
         $today = date("Y-m-d");
         $activeBookings = Booking::where('end_date', '>', $today)->where('start_date', '<=', $today)->first();
-        $quests = $activeBookings->package->quests;
-
-        return view('user.quests.index', compact('quests'));
+       
+        $noActive = false;
+        if($activeBookings->count == 0){
+            $noActive = true;
+            return view('user.quests.index',compact('noActive'));
+        }
+        else{
+            $quests = $activeBookings->package->quests;
+            return view('user.quests.index', compact('quests','noActive'));
+        }
     }
 
     public function completion($random_id)

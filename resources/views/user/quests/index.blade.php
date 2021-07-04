@@ -18,7 +18,13 @@
                 <div class="header_box">
                     <h2 class="d-inline-block">All Active Quests</h2>
                 </div>
+@if($noActive)
 
+<h4 class="mt-5 mb-5 text-center">
+    No Active Quest
+</h4>
+
+@else
                 @foreach ($quests as $quest)
 
                     <div class="card">
@@ -61,8 +67,8 @@
 
                 @endforeach
 
+@endif
             </div>
         </div>
     </div>
-
 @endsection
