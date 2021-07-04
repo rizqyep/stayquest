@@ -51,7 +51,8 @@
                 <li><a href="#sign-in-dialog" id="sign-in" class="login" title="Sign In">Sign In</a></li>
 
             @else
-                <li><a href="{{ url('/cart') }}" class="cart-menu-btn" title="Cart"><strong>4</strong></a></li>
+                <li><a href="{{ url('/carts') }}" class="cart-menu-btn"
+                        title="Cart"><strong>{{ Auth::user()->carts->count() }}</strong></a></li>
                 <li><a href="{{ url('/wishlist') }}" class="wishlist_bt_top" title="Your wishlist">Your wishlist</a></li>
 
             @endguest

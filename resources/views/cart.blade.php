@@ -102,6 +102,7 @@
                                     IDR {{ number_format($totalInCart, 0, ',', '.') }}</span>
                             </div>
                             <form action="{{ url('/checkout') }}" method="post">
+                                @csrf
                                 <button type="submit" class="btn_1 full-width purchase">Checkout</button>
                             </form>
                         </div>

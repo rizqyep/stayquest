@@ -26,3 +26,9 @@ Route::resource('/packages', 'PackagesController');
 Route::get('/quests/completion/{random_id}', 'QuestController@completion');
 Route::get('/carts', 'CartController@index');
 Route::post('/carts', 'CartController@store');
+Route::get('/checkout/finish', 'CheckoutController@finish');
+Route::post('/checkout', 'CheckoutController@store');
+
+
+Route::resource('/user/bookings', 'BookingController');
+Route::resource('/user/quests', 'QuestsController');
