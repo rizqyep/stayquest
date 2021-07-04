@@ -90,13 +90,6 @@
                             <!-- /row -->
                             <hr>
 
-                            <h3>Pictures from our users</h3>
-                            <div class="pictures_grid magnific-gallery clearfix">
-                                <figure><a href="/img/detail_gallery/detail_1.jpg" title="Photo title"
-                                        data-effect="mfp-zoom-in"><img src="/img/detail_gallery/detail_1.jpg" alt=""></a>
-                                </figure>
-                            </div>
-                            <!-- /pictures -->
 
                             <hr>
 
@@ -202,7 +195,7 @@
                                             <i class="icon_star voted"></i>
                                             @endfor
                                             
-                                            @for($i = 5 ; $i > intval($review->rating) ; $i++)
+                                            @for($i = 5 ; $i > intval($review->rating) ; $i--)
                                                 <i class="icon_star"></i>
                                             @endfor
                                         </div>
@@ -219,6 +212,7 @@
                                 @endforeach
                                 <!-- /review-box -->
                             <!-- /review-container -->
+                            </div>
                         </section>
                         <!-- /section -->
                         <hr>
@@ -226,8 +220,11 @@
                         <div class="add-review">
                             <h5>Leave a Review</h5>
                             @guest
+                    
                                 <h4 class="text-center mt-5 text-muted">You need to be logged in to leave a review</h4>
+                                   <div class="d-flex justify-content-center">
                                 <a href="{{ route('login') }}" class="text-center">Login Here</a>
+                                </div>
                             @else
                                 <form action="{{ url('/packages/review/') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
@@ -260,11 +257,13 @@
                                             <input type="submit" value="Submit" class="btn_1" id="submit-review">
                                         </div>
                                     </div>
+                                   
                                 </form>
+                                 @endguest
                             </div>
                         </div>
                         <!-- /col -->
-                    @endguest
+                    
                     <aside class="col-lg-4" id="sidebar">
                         <div class="box_detail booking">
                             <div class="price">
@@ -299,11 +298,7 @@
                                 <button class=" add_top_30 btn_1 full-width purchase">Proceed to Booking</button>
                             </form>
 
-                            {{-- <ul class="share-buttons">
-                            <li><a class="fb-share" href="#0"><i class="social_facebook"></i> Share</a></li>
-                            <li><a class="twitter-share" href="#0"><i class="social_twitter"></i> Tweet</a></li>
-                            <li><a class="gplus-share" href="#0"><i class="social_googleplus"></i> Share</a></li>
-                        </ul> --}}
+                           
                     </aside>
                 </div>
                 <!-- /row -->

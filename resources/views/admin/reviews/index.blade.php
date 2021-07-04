@@ -19,6 +19,7 @@
 
 
             @foreach ($reviews as $review)
+          
                 <hr class="mt-3 mb-3">
                     <h4>Review From : {{$review->user->name}}</h4>
                     <p>{{$review->text}}</p>
@@ -27,7 +28,7 @@
                     <h4>Additional Image : </h4>
                     <img src="/storage/{{$review->image}}" alt="Review Image" style="object-fit: cover;width:200px">
                     @endif
-                </div>
+                
             @endforeach
             <hr class="mt-3 mb-3">
         </div>
