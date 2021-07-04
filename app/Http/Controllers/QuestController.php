@@ -43,15 +43,27 @@ class QuestController extends Controller
         //Check if ever completed 
 
         $today = date("Y-m-d");
-        $activeBookings = Booking::where('end_date', '>', $today)->where('start_date', '<=', $today)->first();
-        $quests = $activeBookings->package->quests;
-
+        $activeBookingsCount =
+        Booking::where('end_date', '>', $today)->where('start_date', '<=', $today)->count();
         $hasQuest = false;
-        foreach ($quests as $q) {
-            if ($q->id == $quest->id) {
-                $hasQuest = true;
+        if($activeBookingsCount == 0){
+            $hasQuest =false;
+        }
+        else{
+            $activeBookings = Booking::where('end_date', '>', $today)->where('start_date', '<=', $today)->first();
+            
+
+            $quests = $activeBookings->package->quests;
+
+    
+            foreach ($quests as $q) {
+                if ($q->id == $quest->id) {
+                    $hasQuest = true;
+                }
             }
         }
+
+
 
         if ($hasQuest == false) {
             Alert::warning('Oops!', 'Quests are no longer active or you are not the booking party!');
