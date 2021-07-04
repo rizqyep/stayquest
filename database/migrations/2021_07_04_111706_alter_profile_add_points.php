@@ -14,7 +14,7 @@ class AlterProfileAddPoints extends Migration
     public function up()
     {
         Schema::table('profiles', function (Blueprint $table) {
-            $table->integer('points');
+            $table->integer('points')->default(0);
         });
     }
 

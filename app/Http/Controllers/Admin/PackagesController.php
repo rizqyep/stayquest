@@ -77,7 +77,7 @@ class PackagesController extends Controller
 
         $questCompletion = new QuestCompletion();
         $questCompletion->quest_id = $quest->id;
-        $questCompletion->random_id = Str::random(32);
+        $questCompletion->random_id = Str::random(16);
         $questCompletion->save();
         Alert::success('Succcess', 'Quest has been successfully added!');
 

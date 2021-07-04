@@ -110,7 +110,7 @@
                                     </div>
                                     <div class="modal-body pt-3 pb-3">
                                         <div class="d-flex justify-content-center">
-                                            {!! QrCode::size(300)->generate('http://localhost:8000/quest/complete/' . $quest->completion->random_id) !!}
+                                            {!! QrCode::size(300)->generate('http://172.20.10.3:8000/quests/completion/' . $quest->completion->random_id) !!}
                                         </div>
                                     </div>
                                 </div>
