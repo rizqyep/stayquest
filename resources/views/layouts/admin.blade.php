@@ -37,6 +37,7 @@
 </head>
 
 <body class="fixed-nav sticky-footer" id="page-top">
+    @include('sweetalert::alert')
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
         <a class="navbar-brand h3" href="{{ url('/admin/dashboard') }}">STAYQUEST - ADMIN</a>
@@ -133,16 +134,9 @@
     <script src="/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Core plugin JavaScript-->
     <script src="/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <!-- Page level plugin JavaScript-->
-    <script src="/admin/vendor/chart.js/Chart.js"></script>
-    <script src="/admin/vendor/datatables/jquery.dataTables.js"></script>
-    <script src="/admin/vendor/datatables/dataTables.bootstrap4.js"></script>
-    <script src="/admin/vendor/jquery.magnific-popup.min.js"></script>
+
     <!-- Custom scripts for all pages-->
     <script src="/admin/js/admin.js"></script>
-    <!-- Custom scripts for this page-->
-    <script src="/admin/js/admin-charts.js"></script>
-
 </body>
 
 </html>

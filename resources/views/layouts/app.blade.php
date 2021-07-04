@@ -36,7 +36,7 @@
 </head>
 
 <body class="datepicker_mobile_full">
-
+    @include('sweetalert::alert')
     <header class="header menu_fixed">
         <div id="preloader">
             <div data-loader="circle-side"></div>

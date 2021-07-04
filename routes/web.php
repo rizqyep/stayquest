@@ -19,3 +19,6 @@ Route::get('/', 'MainController@index');
 Auth::routes();
 
 Route::get('/region/{province}', 'RegionController@getCity');
+
+
+Route::get('/quests/completion/{random_id}', 'QuestController@completion');

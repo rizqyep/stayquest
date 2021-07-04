@@ -13,9 +13,14 @@
         </div>
         <div class="card-body">
 
-            <form action="{{ url('/admin/packages') }}" method="post">
+            <form action="{{ url('/admin/packages') }}" method="post" enctype="multipart/form-data">
+                @csrf
                 <h5 class="font-weight-bold">Package Information</h5>
                 <hr>
+                <div class="form-group">
+                    <label for="image">Package Image</label>
+                    <input type="file" name="image" id="image" class="form-control-file">
+                </div>
                 <div class="form-group">
                     <label for="name">Package Name</label>
                     <input class="form-control" type="text" id="name" name="name"
@@ -24,7 +29,8 @@
 
                 <div class="form-group">
                     <label for="price">Price (IDR)</label>
-                    <input class="form-control" type="number" step="10000" min="100000" max="200000" value="100000">
+                    <input class="form-control" type="number" id="price" name="price" step="50000" min="100000"
+                        max="10000000" value="100000">
                 </div>
 
                 <div class="form-group">
@@ -33,7 +39,7 @@
                 </div>
                 <div class="form-group">
                     <label for="province">Province</label>
-                    <input list="provinceList" id="province" class="form-control">
+                    <input list="provinceList" id="province" class="form-control" name="province">
                     <datalist id="provinceList">
                         @foreach ($provinces as $province)
                             <option value="{{ $province->name }}">{{ $province->name }}</option>
@@ -54,14 +60,18 @@
                 <h5 class="font-weight-bold mt-3">Accommodation Details</h5>
                 <hr>
                 <div class="form-group">
-                    <label for="name">Package Name</label>
-                    <input class="form-control" type="text" id="name" name="name"
-                        placeholder="Ex : Staycation at Villa Sabang">
+                    <label for="accommodation_name">Room Name</label>
+                    <input class="form-control" type="text" id="accommodation_name" name="accommodation_name"
+                        placeholder="Ex : Deluxe Room">
+                </div>
+
+                <div class="form-group">
+                    <label for="capacity">Capacity (people)</label>
+                    <input class="form-control" type="number" name="capacity" id="capacity" min="2" max="5" value="2">
                 </div>
 
 
-
-
+                <button class="btn btn-danger text-white w-100 mt-3">Add New Package</button>
             </form>
         </div>
     </div>
