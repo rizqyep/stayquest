@@ -17,3 +17,5 @@ include("admin_routes.php");
 Route::get('/', 'MainController@index');
 
 Auth::routes();
+
+Route::get('/region/{province}', 'RegionController@getCity');

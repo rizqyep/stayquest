@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePackagesTable extends Migration
+class AlterAccommodationAddCapacity extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,9 @@ class CreatePackagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('packages', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('province');
-
-            $table->integer('price');
-            $table->integer('duration');
-            $table->timestamps();
+        Schema::table('accommodations', function (Blueprint $table) {
+            $table->integer('capacity');
+            $table->dropColumn('location');
         });
     }
 
@@ -31,6 +26,8 @@ class CreatePackagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('packages');
+        Schema::table('accommodations', function (Blueprint $table) {
+            $table->string('location');
+        });
     }
 }
