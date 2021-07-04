@@ -9,3 +9,4 @@ Route::delete('/admin/packages/quests/{package_id}', 'Admin\PackagesController@d
 
 
 Route::resource('/admin/packages', 'Admin\PackagesController', ['params' => ['/admin/packages' => 'packages']]);
+Route::resource('/admin/reviews', 'Admin\ReviewController', ['params' => ['/admin/reviews' => 'reviews']]);
