@@ -10,7 +10,6 @@ class MainController extends Controller
     public function index()
     {
         $recommendedPackages = Packages::paginate(5);
-
         return view('welcome', compact('recommendedPackages'));
     }
 }
