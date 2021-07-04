@@ -72,9 +72,9 @@
 
             @foreach ($quests as $quest)
                 <hr class="mt-3 mb-3">
-                <div class="d-flex justify-content-start align-items-center">
-                    <div style="width:200px;" class="d-flex justify-content-center mr-5">
-                        <img src="/storage/{{ $quest->icon }}" alt="" height="120">
+                <div class="d-flex justify-content-start align-items-center ">
+                    <div style="width:22vw;" class="d-flex justify-content-center mr-5">
+                        <img src="/storage/{{ $quest->icon }}" alt="" style="width:20vw">
                     </div>
                     <div class="w-100">
                         <div class="d-flex justify-content-between">
@@ -89,6 +89,34 @@
                         <p>{{ $quest->descrition }}</p>
                         <p><i class="fa fa-fw fa-money mr-2"></i>{{ $quest->points }} Points </p>
                         <p><i class="fa fa-fw fa-map-pin mr-2"></i>{{ $quest->location }}</p>
+
+                        <button class="btn btn-danger btn-sm" data-toggle="modal"
+                            data-target="#questQRCodeModal{{ $loop->iteration }}">
+                            <i class="fa fa-fw fa-plus"></i> Show
+                            Completion QR
+                        </button>
+
+                        <!-- Modal QRCode -->
+                        <div class="modal fade" id="questQRCodeModal{{ $loop->iteration }}" tabindex="-1" role="dialog"
+                            aria-labelledby="questQRCodeModal{{ $loop->iteration }}Label" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="questQRCodeModal{{ $loop->iteration }}Label">QR Code
+                                            For Completion</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body pt-3 pb-3">
+                                        <div class="d-flex justify-content-center">
+                                            {!! QrCode::size(300)->generate('http://localhost:8000/quest/complete/' . $quest->completion->random_id) !!}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal QRCode -->
                     </div>
                 </div>
             @endforeach

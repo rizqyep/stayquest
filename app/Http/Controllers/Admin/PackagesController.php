@@ -7,8 +7,12 @@ use App\Http\Controllers\Controller;
 use App\Packages;
 use Alert;
 use App\Quest;
+use App\QuestCompletion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Str;
+use Illuminate\Support\Facades\Hash;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class PackagesController extends Controller
 {
@@ -70,6 +74,11 @@ class PackagesController extends Controller
         $quest->description = $request->description;
         $quest->location = $request->location;
         $quest->save();
+
+        $questCompletion = new QuestCompletion();
+        $questCompletion->quest_id = $quest->id;
+        $questCompletion->random_id = Str::random(32);
+        $questCompletion->save();
         Alert::success('Succcess', 'Quest has been successfully added!');
 
         return redirect('/admin/packages/quests/' . $package_id);

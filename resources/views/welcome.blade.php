@@ -32,7 +32,7 @@
                             <div class="box_grid">
                                 <figure>
                                     <a href="#0" class="wish_bt"></a>
-                                    <a href="{{ url('packages' . $package->id) }}"><img
+                                    <a href="{{ url('packages/' . $package->id) }}"><img
                                             src="/storage/{{ $package->image }}" class="img-fluid" alt="" width="800"
                                             height="533">
                                         <div class="read_more"><span>Read more</span></div>
@@ -47,7 +47,7 @@
                                     <p>Max Guests allowed per pac : {{ $package->accommodation->capacity }} person</p>
                                 </div>
                                 <ul>
-                                    <li><i class="icon_clock_alt"></i> 1h 30min</li>
+                                    <li><i class="icon_clock_alt"></i> {{ $package->duration }} days</li>
                                     <li>
                                         <div class="score"><span><em>{{ $package->reviews->count() }}
                                                     Reviews</em></span><strong>{{ $package->rating() }}</strong></div>
@@ -61,7 +61,8 @@
                     <!-- /item -->
                 </div>
                 <!-- /carousel -->
-                <p class="btn_home_align"><a href="{{ url('/packages') }}" class="btn_1 rounded">View all Packages</a></p>
+                <p class="btn_home_align"><a href="{{ url('/packages') }}" class="btn_1 rounded">View all Packages</a>
+                </p>
                 <hr class="large">
             </div>
             <!-- /container -->

@@ -21,4 +21,8 @@ Auth::routes();
 Route::get('/region/{province}', 'RegionController@getCity');
 
 
+Route::resource('/packages', 'PackagesController');
+
 Route::get('/quests/completion/{random_id}', 'QuestController@completion');
+Route::get('/carts', 'CartController@index');
+Route::post('/carts', 'CartController@store');

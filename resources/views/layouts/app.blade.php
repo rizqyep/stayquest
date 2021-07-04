@@ -76,6 +76,12 @@
                 @if (Auth::user())
                     <li><span><a href="#0"><i class="fas fa-user"></i> {{ Auth::user()->name }} </a></span>
                         <ul>
+
+                            <li>
+                                <span><a href="{{ url('/user/dashboard') }}">Dashboard</a></span>
+
+                            </li>
+
                             <li>
                                 <span class="p-3">
                                     <form action="{{ route('logout') }}" method="POST">
@@ -183,26 +189,7 @@
     <script src="/js/main.js"></script>
     <script src="/assets/validate.js"></script>
 
-    <!-- DATEPICKER  -->
-    <script>
-        $(function() {
-            'use strict';
-            $('input[name="dates"]').daterangepicker({
-                autoUpdateInput: false,
-                minDate: new Date(),
-                locale: {
-                    cancelLabel: 'Clear'
-                }
-            });
-            $('input[name="dates"]').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('MM-DD-YY') + ' > ' + picker.endDate.format(
-                    'MM-DD-YY'));
-            });
-            $('input[name="dates"]').on('cancel.daterangepicker', function(ev, picker) {
-                $(this).val('');
-            });
-        });
-    </script>
+
 
     <!-- INPUT QUANTITY  -->
     <script src="/js/input_qty.js"></script>
