@@ -15,7 +15,9 @@
                     <div class="container">
                         <h3>Book unique experiences</h3>
                         <p>Explore top rated staycation packages with maximum safety and experience!</p>
-
+                        <a href="{{url('/register')}}" class="mt-3 btn_1">
+                            Start Now
+                        </a>
                     </div>
                 </div>
             </section>
